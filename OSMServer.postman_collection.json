@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "a87995b5-8f44-4589-beda-631002a6ba30",
+		"name": "OSMServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/keys",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d92923cd-9300-4c9d-93b2-c7a61a0dd502",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// example using response assertions",
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    pm.response.to.have.jsonBody(\"OK\"); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"deviceId\": 123,\n    \"registrationId\": 456,\n    \"identityKey\": \"abcdef\",\n    \"signedPreKey\": {\n        \"id\": 666,\n        \"key\": \"abcdef\",\n        \"signature\": \"abcdef\"\n    },\n    \"preKey\": {\n        \"id\": 444,\n        \"key\": \"abcdef\"\n    }\n}\n        "
+				},
+				"url": {
+					"raw": "localhost:3000/keys",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"keys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/keys?deviceId=123&registrationId=456",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ea0e317d-4593-40d2-877c-52c7d568260f",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.deviceId).to.eql(123);",
+							"    pm.expect(jsonData.registrationId).to.eql(456);",
+							"    pm.expect(jsonData.identityKey).to.eql('abcdef');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/keys?deviceId=123&registrationId=456",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"keys"
+					],
+					"query": [
+						{
+							"key": "deviceId",
+							"value": "123"
+						},
+						{
+							"key": "registrationId",
+							"value": "456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/messages",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6eb0055b-4666-4e61-8d8e-a83d0798e9d9",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// example using response assertions",
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    pm.response.to.have.jsonBody(\"OK\"); ",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"destinationDeviceId\": 123,\n    \"destinationRegistrationId\": 456,\n    \"ciphertextMessage\": \"hullo\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/messages",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/messages?deviceId=123&registrationId=456",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "53fdeaae-179f-481c-8a1e-abc842b1d670",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.destinationDeviceId).to.eql(123);",
+							"    pm.expect(jsonData.destinationRegistrationId).to.eql(456);",
+							"    pm.expect(jsonData.ciphertextMessage).to.eql('hullo');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/messages?deviceId=123&registrationId=456",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"messages"
+					],
+					"query": [
+						{
+							"key": "deviceId",
+							"value": "123"
+						},
+						{
+							"key": "registrationId",
+							"value": "456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/messages?key=m-123-456-1543931456014",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/messages?key=m-123-456-1543931456014",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"messages"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "m-123-456-1543931456014"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

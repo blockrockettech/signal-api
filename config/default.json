@@ -1,0 +1,12 @@
+{
+  "api": {
+    "port": 3000
+  },
+  "levelDb": {
+    "path": "./data/osm-db"
+  },
+  "logging": {
+    "errorLog": "logs/errors.log",
+    "defaultLog": "logs/application.log"
+  }
+}

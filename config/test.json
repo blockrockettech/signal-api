@@ -1,0 +1,5 @@
+{
+  "levelDb": {
+    "path": "./data/osm-test-db"
+  }
+}
